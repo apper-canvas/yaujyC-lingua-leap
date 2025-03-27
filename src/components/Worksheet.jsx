@@ -69,10 +69,11 @@ const MultipleChoice = ({ question, options, correctAnswer, onAnswer }) => {
   );
 };
 
-const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
+const FillInBlank = ({ sentence, blanks, answers, hints = [], onAnswer }) => {
   const [userAnswers, setUserAnswers] = useState(Array(blanks.length).fill(''));
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [visibleHints, setVisibleHints] = useState(Array(blanks.length).fill(false));
 
   const handleChange = (index, value) => {
     if (!showFeedback) {
@@ -80,6 +81,12 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
       newAnswers[index] = value;
       setUserAnswers(newAnswers);
     }
+  };
+
+  const toggleHint = (index) => {
+    const newVisibleHints = [...visibleHints];
+    newVisibleHints[index] = !newVisibleHints[index];
+    setVisibleHints(newVisibleHints);
   };
 
   const checkAnswers = () => {
@@ -94,7 +101,6 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
   const renderSentenceWithBlanks = () => {
     let result = [];
     let currentIndex = 0;
-    let blankIndex = 0;
     
     // Create a regex that matches the placeholders [1], [2], etc.
     const regex = /\[(\d+)\]/g;
@@ -111,14 +117,36 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
       // Add the input field
       const blankPosition = parseInt(match[1]) - 1;
       result.push(
-        <input
-          key={`input-${currentIndex}`}
-          type="text"
-          className="worksheet-input"
-          value={userAnswers[blankPosition] || ''}
-          onChange={(e) => handleChange(blankPosition, e.target.value)}
-          disabled={showFeedback}
-        />
+        <span key={`input-wrapper-${currentIndex}`} className="inline-flex items-center">
+          <input
+            key={`input-${currentIndex}`}
+            type="text"
+            className="worksheet-input"
+            value={userAnswers[blankPosition] || ''}
+            onChange={(e) => handleChange(blankPosition, e.target.value)}
+            disabled={showFeedback}
+          />
+          {hints[blankPosition] && (
+            <div className="relative inline-block ml-1">
+              <button
+                type="button"
+                onClick={() => toggleHint(blankPosition)}
+                className="text-surface-400 hover:text-primary focus:outline-none"
+                aria-label="Show hint"
+              >
+                <HelpCircle size={16} />
+              </button>
+              {visibleHints[blankPosition] && (
+                <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-surface-800 dark:bg-surface-900 text-white p-2 rounded-lg shadow-lg text-sm w-max max-w-xs z-10">
+                  <div className="relative">
+                    <p>{hints[blankPosition]}</p>
+                    <div className="absolute w-3 h-3 bg-surface-800 dark:bg-surface-900 transform rotate-45 left-1/2 -translate-x-1/2 -bottom-1.5"></div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </span>
       );
       currentIndex++;
       
@@ -176,6 +204,7 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
             onClick={() => {
               setShowFeedback(false);
               setUserAnswers(Array(blanks.length).fill(''));
+              setVisibleHints(Array(blanks.length).fill(false));
             }}
           >
             Try Again

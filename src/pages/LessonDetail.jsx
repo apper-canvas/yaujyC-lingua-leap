@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Play, Volume2, BookOpen, CheckSquare, Download, Share2 } from 'lucide-react';
+import { ArrowLeft, Play, Volume2, BookOpen, CheckSquare, Download, Share2, FileText } from 'lucide-react';
 import ExampleCard from '../components/ExampleCard';
 import LessonNavigation from '../components/LessonNavigation';
 
@@ -102,7 +102,15 @@ export default function LessonDetail({ language, flag, color }) {
               {lesson.topics.map((topic, index) => (
                 <li key={index} className="flex items-start">
                   <CheckSquare size={20} className="text-primary mt-1 mr-3 flex-shrink-0" />
-                  <span>{topic}</span>
+                  <div>
+                    <span>{topic}</span>
+                    <Link 
+                      to={`/${language.toLowerCase()}/worksheet/${levelIndex}/${lessonIndex}/${index}`}
+                      className="ml-3 text-sm bg-primary/10 text-primary dark:bg-primary-light/10 dark:text-primary-light px-2 py-0.5 rounded-lg inline-flex items-center"
+                    >
+                      <FileText size={14} className="mr-1" /> Practice Worksheet
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -148,6 +156,33 @@ export default function LessonDetail({ language, flag, color }) {
                 ))}
               </div>
               <button className="mt-4 btn btn-primary">Check Answers</button>
+            </div>
+            
+            {/* Topic Worksheets Section */}
+            <div className="mt-8">
+              <h3 className="text-xl font-bold mb-4">Topic Worksheets</h3>
+              <p className="mb-4 text-surface-600 dark:text-surface-300">
+                Practice each topic with dedicated interactive worksheets
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {lesson.topics.map((topic, index) => (
+                  <Link 
+                    key={index} 
+                    to={`/${language.toLowerCase()}/worksheet/${levelIndex}/${lessonIndex}/${index}`}
+                    className="card p-4 hover:shadow-md transition-shadow flex items-center gap-3"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary/10 dark:bg-primary-light/10 flex items-center justify-center text-primary dark:text-primary-light">
+                      <FileText size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-medium">{topic}</h4>
+                      <p className="text-sm text-surface-500 dark:text-surface-400">
+                        Interactive worksheet with exercises
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

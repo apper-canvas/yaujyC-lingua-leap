@@ -44,6 +44,38 @@
   .language-card-active {
     @apply ring-2 ring-primary dark:ring-primary-light;
   }
+
+  .worksheet-container {
+    @apply p-6 rounded-xl border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-800;
+  }
+  
+  .worksheet-option {
+    @apply p-3 border border-surface-200 dark:border-surface-700 rounded-lg flex items-center gap-3 hover:bg-surface-50 dark:hover:bg-surface-700 cursor-pointer transition-colors;
+  }
+  
+  .worksheet-option-selected {
+    @apply border-primary dark:border-primary-light bg-primary/5 dark:bg-primary-light/10;
+  }
+
+  .worksheet-input {
+    @apply px-3 py-2 border-b-2 border-dashed border-surface-300 dark:border-surface-600 bg-transparent focus:border-primary dark:focus:border-primary-light focus:outline-none rounded-none min-w-[100px] text-center;
+  }
+  
+  .worksheet-drag-item {
+    @apply px-3 py-2 bg-surface-100 dark:bg-surface-700 rounded-lg cursor-move mb-2 border border-surface-200 dark:border-surface-600;
+  }
+  
+  .worksheet-drop-zone {
+    @apply p-3 border-2 border-dashed border-surface-300 dark:border-surface-600 rounded-lg min-h-[50px] flex items-center justify-center;
+  }
+  
+  .worksheet-progress-bar {
+    @apply h-2 bg-surface-200 dark:bg-surface-700 rounded-full overflow-hidden;
+  }
+  
+  .worksheet-progress-fill {
+    @apply h-full bg-gradient-to-r from-primary to-secondary transition-all duration-300;
+  }
 }
 
 @layer utilities {

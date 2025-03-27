@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import French from './pages/French';
 import Spanish from './pages/Spanish';
 import German from './pages/German';
+import LessonDetail from './pages/LessonDetail';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -54,6 +55,9 @@ function App() {
           <Route path="/french" element={<French />} />
           <Route path="/spanish" element={<Spanish />} />
           <Route path="/german" element={<German />} />
+          <Route path="/french/lesson/:levelIndex/:lessonIndex" element={<LessonDetail language="French" flag="🇫🇷" color="from-blue-500 to-red-500" />} />
+          <Route path="/spanish/lesson/:levelIndex/:lessonIndex" element={<LessonDetail language="Spanish" flag="🇪🇸" color="from-yellow-500 to-red-600" />} />
+          <Route path="/german/lesson/:levelIndex/:lessonIndex" element={<LessonDetail language="German" flag="🇩🇪" color="from-yellow-500 to-black" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

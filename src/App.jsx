@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Home from './pages/Home';
@@ -29,13 +29,18 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-surface-800/80 backdrop-blur-md border-b border-surface-200 dark:border-surface-700">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-              L
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
+                L
+              </div>
+              <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                LinguaLeap
+              </span>
             </div>
-            <span className="font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              LinguaLeap
-            </span>
+            <Link to="/" className="text-surface-700 dark:text-surface-300 hover:text-primary dark:hover:text-primary-light transition-colors font-medium">
+              Back to Home
+            </Link>
           </div>
           
           <motion.button

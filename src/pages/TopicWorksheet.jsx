@@ -55,6 +55,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "Enchanté", target: "Nice to meet you" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "Which phrase would you use to ask someone's name in French?",
+            options: ["Où habites-tu?", "Comment t'appelles-tu?", "Quel âge as-tu?", "Comment ça va?"],
+            correctAnswer: "Comment t'appelles-tu?"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "- [1] vas-tu? - Je [2] bien, merci.",
+            blanks: [1, 2],
+            answers: ["Comment", "vais"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "Bonsoir", target: "Good evening" },
+              { source: "À bientôt", target: "See you soon" },
+              { source: "Bonne journée", target: "Have a nice day" },
+              { source: "Ravi de vous connaître", target: "Pleased to meet you" }
+            ]
+          }
         }
       ]
     },
@@ -88,6 +115,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "le téléphone", target: "the phone" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "Which color is 'rouge' in French?",
+            options: ["Blue", "Green", "Red", "Yellow"],
+            correctAnswer: "Red"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "Dans ma chambre, il y a [1] lit et [2] bureau.",
+            blanks: [1, 2],
+            answers: ["un", "un"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "le chien", target: "the dog" },
+              { source: "le chat", target: "the cat" },
+              { source: "l'oiseau", target: "the bird" },
+              { source: "le poisson", target: "the fish" }
+            ]
+          }
         }
       ]
     },
@@ -119,6 +173,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "tu parles", target: "you speak" },
               { source: "il dort", target: "he sleeps" },
               { source: "nous faisons", target: "we do/make" }
+            ]
+          }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "What is the correct form of 'être' for 'ils'?",
+            options: ["suis", "es", "est", "sont"],
+            correctAnswer: "sont"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "Tu [1] de la musique. Elle [2] une lettre.",
+            blanks: [1, 2],
+            answers: ["écoutes", "écrit"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "vous lisez", target: "you read (plural/formal)" },
+              { source: "elles dansent", target: "they dance (feminine)" },
+              { source: "je comprends", target: "I understand" },
+              { source: "tu finis", target: "you finish" }
             ]
           }
         }
@@ -158,6 +239,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "Hasta luego", target: "See you later" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "How would you ask someone's name in Spanish?",
+            options: ["¿Cuántos años tienes?", "¿Dónde vives?", "¿Cómo te llamas?", "¿Qué hora es?"],
+            correctAnswer: "¿Cómo te llamas?"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "- ¿[1] tal? - Muy [2], gracias.",
+            blanks: [1, 2],
+            answers: ["Qué", "bien"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "Encantado/a", target: "Delighted to meet you" },
+              { source: "Hasta mañana", target: "See you tomorrow" },
+              { source: "Igualmente", target: "Likewise" },
+              { source: "¿Cómo te va?", target: "How's it going?" }
+            ]
+          }
         }
       ]
     },
@@ -191,6 +299,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "el teléfono", target: "the phone" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "What is 'azul' in English?",
+            options: ["Red", "Green", "Blue", "Yellow"],
+            correctAnswer: "Blue"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "En mi habitación hay [1] cama y [2] escritorio.",
+            blanks: [1, 2],
+            answers: ["una", "un"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "el pan", target: "the bread" },
+              { source: "la leche", target: "the milk" },
+              { source: "el agua", target: "the water" },
+              { source: "la manzana", target: "the apple" }
+            ]
+          }
         }
       ]
     },
@@ -222,6 +357,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "tú hablas", target: "you speak" },
               { source: "él duerme", target: "he sleeps" },
               { source: "nosotros hacemos", target: "we do/make" }
+            ]
+          }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "What is the correct form of 'ser' for 'ellos'?",
+            options: ["soy", "eres", "es", "son"],
+            correctAnswer: "son"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "Tú [1] música. Ella [2] una carta.",
+            blanks: [1, 2],
+            answers: ["escuchas", "escribe"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "vosotros leéis", target: "you all read" },
+              { source: "ellas bailan", target: "they dance (feminine)" },
+              { source: "yo entiendo", target: "I understand" },
+              { source: "tú terminas", target: "you finish" }
             ]
           }
         }
@@ -261,6 +423,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "Auf Wiedersehen", target: "Goodbye" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "How do you ask someone's name in German (informal)?",
+            options: ["Wie alt bist du?", "Wo wohnst du?", "Wie heißt du?", "Was machst du?"],
+            correctAnswer: "Wie heißt du?"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "- Wie [1] es dir? - [2] gut, danke.",
+            blanks: [1, 2],
+            answers: ["geht", "Sehr"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "Bis bald", target: "See you soon" },
+              { source: "Schönen Tag noch", target: "Have a nice day" },
+              { source: "Gleichfalls", target: "Likewise" },
+              { source: "Wie läuft's?", target: "How's it going?" }
+            ]
+          }
         }
       ]
     },
@@ -294,6 +483,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "das Telefon", target: "the phone" }
             ]
           }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "What color is 'blau' in English?",
+            options: ["Red", "Green", "Blue", "Yellow"],
+            correctAnswer: "Blue"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "In meinem Zimmer gibt es [1] Bett und [2] Schreibtisch.",
+            blanks: [1, 2],
+            answers: ["ein", "einen"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "der Hund", target: "the dog" },
+              { source: "die Katze", target: "the cat" },
+              { source: "der Vogel", target: "the bird" },
+              { source: "der Fisch", target: "the fish" }
+            ]
+          }
         }
       ]
     },
@@ -325,6 +541,33 @@ const generateWorksheetData = (language, topic, levelIndex, lessonIndex) => {
               { source: "du sprichst", target: "you speak" },
               { source: "er schläft", target: "he sleeps" },
               { source: "wir machen", target: "we do/make" }
+            ]
+          }
+        },
+        {
+          type: "multipleChoice",
+          data: {
+            question: "What is the correct form of 'sein' for 'sie' (they)?",
+            options: ["bin", "bist", "ist", "sind"],
+            correctAnswer: "sind"
+          }
+        },
+        {
+          type: "fillInBlank",
+          data: {
+            sentence: "Du [1] Musik. Sie [2] einen Brief.",
+            blanks: [1, 2],
+            answers: ["hörst", "schreibt"]
+          }
+        },
+        {
+          type: "matching",
+          data: {
+            items: [
+              { source: "ihr lest", target: "you all read" },
+              { source: "sie tanzen", target: "they dance" },
+              { source: "ich verstehe", target: "I understand" },
+              { source: "du beendest", target: "you finish" }
             ]
           }
         }

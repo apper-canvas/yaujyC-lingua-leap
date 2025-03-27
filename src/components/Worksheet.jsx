@@ -88,27 +88,45 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
   };
 
   const renderSentenceWithBlanks = () => {
-    const segments = sentence.split(/\[(\d+)\]/);
+    let result = [];
+    let currentIndex = 0;
+    let blankIndex = 0;
     
-    return segments.map((segment, index) => {
-      const blankMatch = segment.match(/^\d+$/);
-      
-      if (blankMatch) {
-        const blankIndex = parseInt(segment) - 1;
-        return (
-          <input
-            key={index}
-            type="text"
-            className="worksheet-input"
-            value={userAnswers[blankIndex] || ''}
-            onChange={(e) => handleChange(blankIndex, e.target.value)}
-            disabled={showFeedback}
-          />
-        );
+    // Create a regex that matches the placeholders [1], [2], etc.
+    const regex = /\[(\d+)\]/g;
+    let match;
+    let lastIndex = 0;
+    
+    while ((match = regex.exec(sentence)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        result.push(<span key={`text-${currentIndex}`}>{sentence.substring(lastIndex, match.index)}</span>);
+        currentIndex++;
       }
       
-      return <span key={index}>{segment}</span>;
-    });
+      // Add the input field
+      const blankPosition = parseInt(match[1]) - 1;
+      result.push(
+        <input
+          key={`input-${currentIndex}`}
+          type="text"
+          className="worksheet-input"
+          value={userAnswers[blankPosition] || ''}
+          onChange={(e) => handleChange(blankPosition, e.target.value)}
+          disabled={showFeedback}
+        />
+      );
+      currentIndex++;
+      
+      lastIndex = match.index + match[0].length;
+    }
+    
+    // Add the remaining text after the last match
+    if (lastIndex < sentence.length) {
+      result.push(<span key={`text-${currentIndex}`}>{sentence.substring(lastIndex)}</span>);
+    }
+    
+    return result;
   };
 
   return (

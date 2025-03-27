@@ -4,6 +4,9 @@ import { Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
+import French from './pages/French';
+import Spanish from './pages/Spanish';
+import German from './pages/German';
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -48,6 +51,9 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/french" element={<French />} />
+          <Route path="/spanish" element={<Spanish />} />
+          <Route path="/german" element={<German />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

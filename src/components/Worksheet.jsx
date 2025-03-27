@@ -6,9 +6,11 @@ const MultipleChoice = ({ question, options, correctAnswer, onAnswer }) => {
   const [showFeedback, setShowFeedback] = useState(false);
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
-    setShowFeedback(true);
-    onAnswer(option === correctAnswer);
+    if (!showFeedback) {
+      setSelectedOption(option);
+      setShowFeedback(true);
+      onAnswer(option === correctAnswer);
+    }
   };
 
   return (
@@ -73,9 +75,11 @@ const FillInBlank = ({ sentence, blanks, answers, onAnswer }) => {
   const [isCorrect, setIsCorrect] = useState(false);
 
   const handleChange = (index, value) => {
-    const newAnswers = [...userAnswers];
-    newAnswers[index] = value;
-    setUserAnswers(newAnswers);
+    if (!showFeedback) {
+      const newAnswers = [...userAnswers];
+      newAnswers[index] = value;
+      setUserAnswers(newAnswers);
+    }
   };
 
   const checkAnswers = () => {
@@ -193,10 +197,12 @@ const Matching = ({ items, onAnswer }) => {
   });
 
   const handleMatch = (source, target) => {
-    setMatches(prev => ({
-      ...prev,
-      [source]: target
-    }));
+    if (!showFeedback) {
+      setMatches(prev => ({
+        ...prev,
+        [source]: target
+      }));
+    }
   };
 
   const checkMatches = () => {
@@ -332,6 +338,7 @@ export default function Worksheet({ worksheetData }) {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [scores, setScores] = useState([]);
   const [completed, setCompleted] = useState(false);
+  const [answeredQuestions, setAnsweredQuestions] = useState([]);
   
   const totalExercises = worksheetData.exercises.length;
   const currentExercise = worksheetData.exercises[currentExerciseIndex];
@@ -341,14 +348,10 @@ export default function Worksheet({ worksheetData }) {
     newScores[currentExerciseIndex] = isCorrect;
     setScores(newScores);
     
-    // Automatically move to next question after 2 seconds
-    setTimeout(() => {
-      if (currentExerciseIndex < totalExercises - 1) {
-        setCurrentExerciseIndex(prevIndex => prevIndex + 1);
-      } else {
-        setCompleted(true);
-      }
-    }, 2000);
+    // Mark this question as answered
+    if (!answeredQuestions.includes(currentExerciseIndex)) {
+      setAnsweredQuestions([...answeredQuestions, currentExerciseIndex]);
+    }
   };
   
   const handleNext = () => {
@@ -368,11 +371,12 @@ export default function Worksheet({ worksheetData }) {
   const resetWorksheet = () => {
     setCurrentExerciseIndex(0);
     setScores([]);
+    setAnsweredQuestions([]);
     setCompleted(false);
   };
   
   const correctAnswers = scores.filter(score => score === true).length;
-  const progress = (currentExerciseIndex / totalExercises) * 100;
+  const progress = (answeredQuestions.length / totalExercises) * 100;
   
   // Render the current exercise
   const ExerciseComponent = exercises[currentExercise.type];
@@ -411,7 +415,7 @@ export default function Worksheet({ worksheetData }) {
             <button
               className="btn btn-primary"
               onClick={handleNext}
-              disabled={scores[currentExerciseIndex] === undefined}
+              disabled={!answeredQuestions.includes(currentExerciseIndex)}
             >
               {currentExerciseIndex === totalExercises - 1 ? 'Finish' : 'Next'}
             </button>

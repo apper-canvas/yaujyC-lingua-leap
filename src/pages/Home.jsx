@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, BookOpen, MessageCircle, GraduationCap, ArrowRight } from 'lucide-react';
 import MainFeature from '../components/MainFeature';
@@ -50,7 +51,15 @@ const features = [
 
 export default function Home() {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const navigate = useNavigate();
   
+  const handleStartLearning = (languageId, event) => {
+    // Prevent the click from bubbling up to the card
+    event.stopPropagation();
+    // Navigate to the language page
+    navigate(`/${languageId}`);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <section className="mb-16">
@@ -107,7 +116,10 @@ export default function Home() {
                         transition={{ duration: 0.3 }}
                         className="mt-4 pt-4 border-t border-surface-200 dark:border-surface-700"
                       >
-                        <button className="btn btn-primary w-full">
+                        <button 
+                          className="btn btn-primary w-full"
+                          onClick={(e) => handleStartLearning(language.id, e)}
+                        >
                           Start Learning <ArrowRight className="ml-2 h-4 w-4" />
                         </button>
                       </motion.div>
